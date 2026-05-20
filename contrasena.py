@@ -23,3 +23,11 @@ class Contrasena:
     def __init__(self, longitud):
         self.longitud = longitud
         self.valor = ""
+
+    # Método para generar la contraseña
+    def validar_longitud(self):
+        #Verifica que la longitud esté en el rango permitido (8-50).
+        if self.longitud < 8:
+            raise LongitudInvalidaError("La longitud debe ser de mínimo 8 caracteres.")
+        if self.longitud > 50:
+            raise LongitudInvalidaError("La longitud no puede superar los 50 caracteres.")

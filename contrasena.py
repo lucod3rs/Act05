@@ -31,3 +31,18 @@ class Contrasena:
             raise LongitudInvalidaError("La longitud debe ser de mínimo 8 caracteres.")
         if self.longitud > 50:
             raise LongitudInvalidaError("La longitud no puede superar los 50 caracteres.")
+    
+
+    # Método para generar la contraseña
+    def generar_contrasena(self):
+        #Genera una estructura de contraseña segura y aleatoria.
+        self.validar_longitud()
+        
+        #Aseguramos al menos un carácter de cada tipo 
+        caracteres_password = [
+            random.choice(self.MAYUSCULAS), #Selecciona un carácter aleatorio de mayúsculas
+            random.choice(self.MINUSCULAS), #Selecciona un carácter aleatorio de minúsculas
+            random.choice(self.NUMEROS), #Selecciona un carácter aleatorio de números
+            random.choice(self.ESPECIALES) #Selecciona un carácter aleatorio de caracteres especiales
+        ]
+

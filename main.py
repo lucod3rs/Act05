@@ -35,3 +35,12 @@ class JuegoCazador:
         
         top.transient(self.ventana) 
         top.grab_set()
+
+
+        # Mostrar el nombre del cofre y los puntos obtenidos
+        tk.Label(top, text=f"COFRE {cofre.nombre.upper()}", font=("Arial", 16)).pack(pady=15)
+        tk.Label(top, text="").pack() 
+
+        # Mostrar la clave correcta si el jugador no adivinó correctamente
+        puntos_txt = f"{cofre.puntos} puntos" if cofre.puntos < 0 else f"+{cofre.puntos} puntos"
+        tk.Label(top, text=puntos_txt, font=("Arial", 14)).pack(pady=5)

@@ -65,3 +65,38 @@ class JuegoCazador:
         self.nombre_jugador = nombre
         self.etiqueta_marcador.config(text=f"CAZADOR: {self.nombre_jugador.upper()}  |  PUNTAJE: {self.puntaje}")
         messagebox.showinfo("Caza Iniciada", f"¡Bienvenido, {self.nombre_jugador}!")
+
+
+# Método para ejecutar la acción de cazar, validando la longitud ingresada y mostrando la recompensa obtenida
+    def ejecutar_caza(self):
+        if not self.nombre_jugador: # Validación para asegurarse de que el jugador haya ingresado su nombre
+            messagebox.showwarning("Atención", "Regístrate antes de cazar.")
+            return
+            
+        txt_lon = self.entrada_longitud.get().strip() #obtiene el texto ingresado en la entrada de longitud
+        
+        try: # Validación de la longitud ingresada,validacion entero positivo
+            if not txt_lon.isdigit():
+                raise ValueError("Ingresa un número entero.")
+            
+            longitud = int(txt_lon)
+            
+            # Usamos la clase Contrasena importada de contrasena.py 
+            password_obj = Contrasena(longitud)
+            clave = password_obj.generar_contrasena()
+            
+            # Usamos la clase Cofre importada de cofre.py 
+            cofre = Cofre.generar_cofre_aleatorio()
+            self.puntaje += cofre.puntos
+            self.mostrar_recompensa(cofre, clave)
+            
+
+        # Manejo de excepciones para casos de longitud inválida o errores en los datos ingresados por el jugador    
+        except (LongitudInvalidaError, ValueError) as e:
+            # Caso de cofre maldito por error en los datos
+            cofre_maldito = Cofre.generar_cofre_maldito()
+            self.puntaje += cofre_maldito.puntos
+            self.mostrar_recompensa(cofre_maldito, f"Error: {e}")
+            
+            # Actualizar el marcador después de la caza, incluso en caso de error
+        self.etiqueta_marcador.config(text=f"CAZADOR: {self.nombre_jugador.upper()}  |  PUNTAJE: {self.puntaje}")

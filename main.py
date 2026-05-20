@@ -100,3 +100,46 @@ class JuegoCazador:
             
             # Actualizar el marcador después de la caza, incluso en caso de error
         self.etiqueta_marcador.config(text=f"CAZADOR: {self.nombre_jugador.upper()}  |  PUNTAJE: {self.puntaje}")
+
+
+#   Método para iniciar la interfaz gráfica del juego, creando la ventana principal 
+#   y los elementos necesarios para la interacción del jugador
+    def iniciar_juego(self):
+        self.ventana = tk.Tk()
+        self.ventana.title("Cazador de Contraseñas")
+        self.ventana.geometry("400x320")
+        self.ventana.config(padx=20, pady=20)
+        
+        # Etiqueta para mostrar el nombre del jugador y el puntaje actual, se actualizará después de cada acción
+        self.etiqueta_marcador = tk.Label(self.ventana, text="ESPERANDO CAZADOR...", 
+                                          font=("Arial", 12, "bold"), fg="#2C3E50")
+        self.etiqueta_marcador.pack(pady=(0, 20))
+
+        # Frame para el registro del jugador, donde se solicita el nombre y se inicia la partida
+        frame_reg = tk.LabelFrame(self.ventana, text=" Registro ", padx=10, pady=10)
+        frame_reg.pack(fill="x", pady=5)
+        
+        # Elementos para el registro del jugador: etiqueta, entrada de texto y botón para iniciar la partida
+        tk.Label(frame_reg, text="Nombre:").pack(side="left")
+        self.entrada_nombre = tk.Entry(frame_reg, width=15)
+        self.entrada_nombre.pack(side="left", padx=5)
+        tk.Button(frame_reg, text="Registrar", command=self.iniciar_partida).pack(side="left", padx=5)
+
+        # Frame para el panel de acción, donde se ingresa la longitud y se ejecuta la caza
+        frame_caza = tk.LabelFrame(self.ventana, text=" Panel de Acción ", padx=10, pady=10)
+        frame_caza.pack(fill="x", pady=15)
+        
+        # Elementos para el panel de acción: etiqueta, entrada de texto para la longitud y botón para ejecutar la caza
+        tk.Label(frame_caza, text="Longitud (8-50):").pack(side="left")
+        self.entrada_longitud = tk.Entry(frame_caza, width=8)
+        self.entrada_longitud.pack(side="left", padx=5)
+        
+        # Botón para ejecutar la caza, que llama al método ejecutar_caza al ser presionado
+        btn_cazar = tk.Button(frame_caza, text="¡ABRIR COFRE!", font=("Arial", 10, "bold"),
+                              bg="#27AE60", fg="white", command=self.ejecutar_caza)
+        btn_cazar.pack(side="left", padx=10)
+
+        self.ventana.mainloop()
+
+if __name__ == "__main__":
+    JuegoCazador().iniciar_juego()

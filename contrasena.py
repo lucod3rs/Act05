@@ -46,3 +46,19 @@ class Contrasena:
             random.choice(self.ESPECIALES) #Selecciona un carácter aleatorio de caracteres especiales
         ]
 
+        #Rellenamos el resto de la contraseña con caracteres aleatorios de todos los tipos
+        todos_los_caracteres = self.MAYUSCULAS + self.MINUSCULAS + self.NUMEROS + self.ESPECIALES
+
+        # Llenamos el resto de la longitud solicitada con caracteres aleatorios, asegurando que no se repitan los ya seleccionados
+        while len(caracteres_password) < self.longitud:
+            caracter_aleatorio = random.choice(todos_los_caracteres)
+            if caracter_aleatorio not in caracteres_password:
+                caracteres_password.append(caracter_aleatorio)
+
+
+        # Mezclamos para que no sigan el orden y convertimos la lista a una cadena
+        random.shuffle(caracteres_password)
+        self.valor = "".join(caracteres_password)
+        return self.valor
+
+

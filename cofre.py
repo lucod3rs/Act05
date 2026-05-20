@@ -24,3 +24,10 @@ class Cofre:
         ]
         nombre, puntos = random.choice(opciones)
         return cls(nombre, puntos)
+    
+    
+    #Definimos un método de clase para generar un cofre maldito
+    @classmethod
+    def generar_cofre_maldito(cls):
+        #Genera el cofre de castigo cuando ocurre un error.
+        return cls("Maldito", -20)

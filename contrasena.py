@@ -18,3 +18,8 @@ class Contrasena:
     MINUSCULAS = "abcdefghijklmnopqrstuvwxyz"
     NUMEROS = "0123456789"
     ESPECIALES = "i?=)(/**+-%&$#!."
+
+    # Constructor de la clase Contrasena
+    def __init__(self, longitud):
+        self.longitud = longitud
+        self.valor = ""

@@ -1,6 +1,7 @@
 # ==========================================
 # main.py
 # archivo principal del proyecto
+#Solucion Luis Cuaical
 #======================================
 
 # Importar las librerías necesarias

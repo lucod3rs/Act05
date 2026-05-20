@@ -44,3 +44,24 @@ class JuegoCazador:
         # Mostrar la clave correcta si el jugador no adivinó correctamente
         puntos_txt = f"{cofre.puntos} puntos" if cofre.puntos < 0 else f"+{cofre.puntos} puntos"
         tk.Label(top, text=puntos_txt, font=("Arial", 14)).pack(pady=5)
+
+        # Si se proporcionó una clave, mostrarla en la ventana
+        if clave: 
+            tk.Label(top, text="Contraseña Cazada:", font=("Arial", 10, "italic")).pack(pady=(10,0))
+            tk.Label(top, text=clave, font=("Courier", 12, "bold"), relief="ridge", padx=10, pady=5).pack(pady=5)
+        
+        # Botón Aceptar para cerrar la ventana de recompensa
+        tk.Button(top, text="ACEPTAR", command=top.destroy, width=20, font=("Arial", 9)).pack(pady=15)
+
+   
+    # Método para iniciar la partida del juego, solicitando el nombre del jugador y mostrando el marcador inicial
+    def iniciar_partida(self):
+        nombre = self.entrada_nombre.get().strip()
+        if not nombre:
+            messagebox.showwarning("Atención", "Cazador, ingresa tu nombre.")
+            return
+        
+        # Guardar el nombre del jugador y actualizar el marcador en la interfaz
+        self.nombre_jugador = nombre
+        self.etiqueta_marcador.config(text=f"CAZADOR: {self.nombre_jugador.upper()}  |  PUNTAJE: {self.puntaje}")
+        messagebox.showinfo("Caza Iniciada", f"¡Bienvenido, {self.nombre_jugador}!")

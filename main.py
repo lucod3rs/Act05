@@ -24,3 +24,14 @@ class JuegoCazador:
         self.entrada_nombre = None
         self.entrada_longitud = None
         self.etiqueta_marcador = None
+
+    # Método para iniciar el juego
+    def mostrar_recompensa(self, cofre, clave=""):
+        #Crea una ventana emergente para mostrar la recompensa al jugador
+        top = tk.Toplevel(self.ventana)
+        top.title("¡RECOMPENSA!")
+        top.geometry("320x280")
+        top.resizable(False, False)
+        
+        top.transient(self.ventana) 
+        top.grab_set()
